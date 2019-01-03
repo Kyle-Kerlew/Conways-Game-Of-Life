@@ -1,5 +1,6 @@
 package gameOfLife.initialize;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import gameOfLife.population.Population;
@@ -26,7 +27,7 @@ public class Main {
 		int choice = sc.nextInt();
 		switch (choice) {
 		case 1:
-			new Population();
+			new Population(new Random());
 			break;
 		case 2:
 			System.out.println("Enter the number of cells you want in each row.");
@@ -41,4 +42,5 @@ public class Main {
 			break;
 		}
 	}
+
 }

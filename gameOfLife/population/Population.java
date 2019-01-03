@@ -10,29 +10,30 @@ public class Population {
 	public Population(int rows, int columns) { // Creates a population in terms of rows and columns
 		int[][] currentGeneration = new int[rows][columns];
 		int[][] nextGeneration = new int[rows][columns];
+		currentGeneration = setPopulation(currentGeneration, rows, columns);
 
 		do {
 			try {
-				currentGeneration = setPopulation(currentGeneration, rows, columns);
 				displayGeneration(currentGeneration);
 				countDeadAlive(currentGeneration);
-				System.out.println("\nAlive: " + getAliveCount() + ". Dead: " + getDeadCount());
+				System.out.printf("\nAlive: %d. Dead: %d.\n", getAliveCount(), getDeadCount());
+				
 				nextGeneration = createNextGeneration(currentGeneration, nextGeneration, rows, columns);
 				displayGeneration(nextGeneration);
 				currentGeneration = nextGeneration;
 				countDeadAlive(nextGeneration);
-				System.out.println("\nAlive: " + getAliveCount() + ". Dead: " + getDeadCount());
-				Thread.sleep(2000);
-				System.out.println();
+				System.out.printf("\nAlive: %d. Dead: %d.\n", getAliveCount(), getDeadCount());
+		
+				Thread.sleep(1000);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} while (true);
 	}
 
-	public Population() { // Creates a random population amount
-		Random r = new Random();
-		new Population(r.nextInt(100) + 1, r.nextInt(100) + 1);
+	
+	public Population(Random r) { 
+		this(r.nextInt(100) + 1, r.nextInt(100) + 1);
 	}
 
 	private void countDeadAlive(int[][] generation) {
@@ -49,11 +50,18 @@ public class Population {
 		}
 	}
 
-	public int getAliveCount() {
+	/*
+	 * Returns the amount of alive cells in each generation
+	 */
+	private int getAliveCount() {
 		return aliveCount;
 	}
 
-	public int getDeadCount() {
+
+	/*
+	 * Returns the amount of dead cells in each generation
+	 */
+	private int getDeadCount() {
 		return deadCount;
 	}
 
@@ -151,6 +159,9 @@ public class Population {
 		return nextGeneration;
 	}
 
+	/*
+	 * Displays the generation in the form of dead and alive cells using . and *
+	 */
 	private void displayGeneration(int[][] generation) {
 		for (int i = 0; i < generation.length; i++) {
 			if (i != 0)
