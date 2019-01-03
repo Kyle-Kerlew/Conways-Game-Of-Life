@@ -6,4 +6,4 @@ A cellular automaton devised by the British mathematician John Horton Conway in 
 2.) Extract all files<br />
 3.) Double-click "Execute"<br />
 4.) You may get a Windows Security Warning asking you to review the file before running it.<br />
-4.) Program will open in a command prompt<br />
+5.) Program will open in a command prompt<br />
